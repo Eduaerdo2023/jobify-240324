@@ -1,20 +1,28 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { 
-  HomeLayout, 
-  Landing, 
-  Register, 
-  Login, 
-  DashboardLayout, 
-  Error, 
-  AddJob, 
-  Stats, 
-  AllJobs, 
-  Profile, 
-  Admin 
+import {
+  HomeLayout,
+  Landing,
+  Register,
+  Login,
+  DashboardLayout,
+  Error,
+  AddJob,
+  Stats,
+  AllJobs,
+  Profile,
+  Admin,
+  EditJob
 } from './pages'
-import { action as registerAction} from './pages/Register'
-
+import { action as registerAction } from './pages/Register'
+import { action as loginAction } from './pages/Login'
+import { action as addJobAction } from './pages/AddJob'
+import { loader as dashboardLoader } from './pages/DashboardLayout'
+import { loader as allJobsLoader } from './pages/AllJob'
+import { loader as editJobLoader } from './pages/EditJob'
+import { action as editJobAction } from './pages/EditJob'
+import { action as deleteJobAction } from './pages/DeleteJob'
+import { loader as adminLoader } from './pages/Admin'
 
 
 export const checkDefaultTheme = () => {
@@ -43,15 +51,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login />
+        element: <Login />,
+        action: loginAction
       },
       {
         path: 'dashboard',
         element: <DashboardLayout />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
-            element: <AddJob />
+            element: <AddJob />,
+            action: addJobAction,
           },
           {
             path: 'stats',
@@ -59,7 +70,8 @@ const router = createBrowserRouter([
           },
           {
             path: 'all-jobs',
-            element: <AllJobs />
+            element: <AllJobs />,
+            loader: allJobsLoader
           },
           {
             path: 'profile',
@@ -67,8 +79,19 @@ const router = createBrowserRouter([
           },
           {
             path: 'admin',
-            element: <Admin/>
+            element: <Admin />,
+            loader: adminLoader
           },
+          {
+            path: 'edit-job/:id',
+            element: <EditJob />,
+            loader: editJobLoader,
+            action: editJobAction
+          },
+          {
+            path: 'delete-job/:id',
+            action: deleteJobAction
+          }
         ]
       }
     ]

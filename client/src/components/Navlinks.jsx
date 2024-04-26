@@ -6,10 +6,12 @@ import { useDashboardContext } from '../pages/DashboardLayout'
 
 const Navlinks = ({isBigSidebar}) => {
   const {toggleSidebar, user}=useDashboardContext()
+  const { role } = user
   return (
     <div className="nav-links">
     {links.map( link => {
       const { text, path, icon } = link
+      if (path === 'admin' && role !== 'admin') return
       return (
         <div key={text}>
           <NavLink  to={path}  className='nav-link' 
