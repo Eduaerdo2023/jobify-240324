@@ -50,7 +50,11 @@ const AddJobs = () => {
           defaultValue={JOB_TYPE.FULL_TIME}
           list= {Object.values(JOB_TYPE)}
           />
-          <button type="submit" className="btn btn-block form-btn" disabled={isSubmitting}>{isSubmitting ? 'submitting...' : 'submit'}</button>
+          <button 
+          type="submit" 
+          className="btn btn-block form-btn" 
+          disabled={isSubmitting}>{isSubmitting ? 'submitting...' : 'submit'}
+          </button>
         </div>
       </Form>
     </Wrapper>
