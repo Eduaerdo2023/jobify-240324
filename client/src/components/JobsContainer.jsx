@@ -5,6 +5,7 @@ import Job from "./Job"
 
 const JobsContainer = () => {
   const { data }= useAllJobsContext()
+  console.log(data);
   const {jobs} = data
   
   if (jobs.length === 0) {
@@ -16,7 +17,7 @@ const JobsContainer = () => {
   return <Wrapper>
     <div className="jobs">
       {jobs.map(job=> {
-        return <Job key ={ job._id} {...job}/>
+        return <Job key ={job._id} {...job}/>
       })}
     </div>
   </Wrapper>

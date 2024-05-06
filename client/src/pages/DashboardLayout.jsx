@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom'
+import { Outlet, redirect, useLoaderData, useNavigate, useNavigation } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/Dashboard'
 import { BigSidebar, SmallSidebar, Navbar } from '../components'
 
@@ -22,7 +22,7 @@ export const loader =async() => {
 const DashboardLayout = ( { isDarkThemeEnabled }) => {
   const { user } = useLoaderData()
   const navigate = useNavigate()
-  // temp
+  
   
   const [showSidebar, setShowSidebar] = useState(false)
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme())
